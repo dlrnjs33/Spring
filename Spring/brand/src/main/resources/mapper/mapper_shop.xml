@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper_shop">
+
+	<select id="list" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_cat = #{bp_cat};
+	</select>
+	
+	<select id="best" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_cat=#{bp_cat} ORDER BY bp_sale_count DESC LIMIT 5;
+	</select>
+	
+	<select id="listOrder" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_cat = #{bp_cat}
+		<if test="order.equals('sales')"> ORDER BY bp_sale_count DESC; </if>
+		<if test="order.equals('new')"> ORDER BY bp_rdate DESC; </if>
+		<if test="order.equals('price_desc')"> ORDER BY bp_dc_price DESC; </if>
+		<if test="order.equals('price_asc')"> ORDER BY bp_dc_price ASC; </if>
+	</select>
+	
+	<select id="listSales" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_discount > 0 ORDER BY bp_discount;
+	</select>
+	
+	<select id="listSalesBest" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_discount > 0 ORDER BY bp_discount DESC LIMIT 5;
+	</select>
+	
+	<select id="saleOrder" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_discount > 0
+		<if test="order.equals('sales')"> ORDER BY bp_sale_count DESC; </if>
+		<if test="order.equals('new')"> ORDER BY bp_rdate DESC; </if>
+		<if test="order.equals('price_desc')"> ORDER BY bp_dc_price DESC; </if>
+		<if test="order.equals('price_asc')"> ORDER BY bp_dc_price ASC; </if>
+	</select>
+	
+	<select id="view" resultType="kr.co.brand.vo.ProductsVO">
+		SELECT *, Floor(bp_price*(1-bp_discount/100)) AS bp_dc_price FROM bp_products WHERE bp_code=#{bp_code};	
+	</select>
+	
+	<insert id="insertCart">
+		INSERT INTO bc_cart SET
+			bc_uid 		= #{bc_uid},
+			bc_code 	= #{bc_code},
+			bc_name 	= #{bc_name},
+			bc_count 	= #{bc_count},
+			bc_option 	= #{bc_option},
+			bc_price 	= #{bc_price},
+			bc_discount = #{bc_discount},
+			bc_total 	= #{bc_total},
+			bc_rdate 	= NOW();
+	</insert>
+	
+	<select id="cart" resultType="kr.co.brand.vo.ProductCartVO">
+		SELECT * FROM bp_products p JOIN bc_cart c ON p.bp_code = c.bc_code WHERE bc_uid = #{bc_uid};
+	</select>
+	
+</mapper>

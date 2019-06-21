@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper_member">
+	
+	
+	<select id="login" resultType="kr.co.brand.vo.MemberVO">
+		SELECT * FROM bm_member WHERE bm_uid = #{bm_uid} AND bm_pass = PASSWORD(#{bm_pass});
+	</select>
+	
+	<select id="terms" resultType="kr.co.brand.vo.TermsVO">
+		SELECT * FROM bm_terms;
+	</select>
+
+	<insert id="register">
+		INSERT INTO bm_member SET
+			bm_uid = #{bm_uid},
+			bm_pass = PASSWORD(#{bm_pass}),
+			bm_name = #{bm_name},
+			bm_gender = #{bm_gender},
+			bm_email = #{bm_email},
+			bm_hp = #{bm_hp},	
+			bm_zip = #{bm_zip},
+			bm_addr1 = #{bm_addr1},
+			bm_addr2 = #{bm_addr2},
+			bm_ip = #{bm_ip},
+			bm_rdate = NOW();
+	</insert>
+	
+</mapper>

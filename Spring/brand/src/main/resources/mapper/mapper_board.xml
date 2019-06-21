@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.mapper_board">
+	
+	<select id="board" resultType="kr.co.brand.vo.BoardVO">
+		SELECT * FROM bb_board WHERE bb_cat=#{bb_cat} ORDER BY bb_num ASC;
+	</select>	
+	
+	<select id="boardView" resultType="kr.co.brand.vo.BoardVO">
+		SELECT * FROM bb_board WHERE bb_seq=#{bb_seq};
+	</select>
+	
+</mapper>

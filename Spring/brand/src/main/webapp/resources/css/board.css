@@ -1,0 +1,110 @@
+.board {
+  width: 720px;
+  margin-left: 60px auto;
+}
+
+.board h1 {
+  font-size: 20px;
+  margin-top: 88px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.board table {
+  width: 100%;
+  margin: 0 100px 60px 250px;
+  border-top: 2px solid #111;
+  border-collapse: collapse;
+}
+
+.board table td {
+  padding: 8px 5px;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
+  text-align: center;
+}
+
+.board .boardview {
+  padding: 8px 5px;
+  border-top: 1px solid #e9e9e9;
+  border-bottom: 1px solid #e9e9e9;
+  text-align: left;
+}
+
+.board .paging {
+  width: 100%;
+	margin-left: 480px;
+  margin-bottom: 60px;
+}
+
+.board span a {
+  color: #5D5D5D;
+	font-size: 12px;
+	letter-spacing: -1px;
+}
+
+.board span a:hover {
+  text-decoration: underline;
+	font-weight: bold;
+}
+
+.board .num a {
+  display: inline-block;
+	min-width: 14px;
+  margin: 0 2px;
+  padding: 8px 9px;
+  border: 1px solid #c4c4c4;
+  background: url() 0 0 repeat-x;
+  color: #000;
+  font-family: Tahoma;
+  font-size: 12px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.board .num a.on {
+  color: #fe434c;
+  font-weight: bold;
+}
+
+.board .qna {
+  border: solid 1px #e9e9e9;
+}
+
+.board .qna th {
+  border-bottom: solid 1px #e9e9e9;
+  border-right: solid 1px #e9e9e9;
+}
+
+.board .qna th {
+  margin: 10px 10px 10px 10px;
+}
+
+.board .qna input[type=text] {
+  width: 100%;
+  height: 20px;
+}
+
+.board .qna input[type=textarea] {
+  width: 100%;
+  height: 160px;
+  resize:none;
+}
+
+.board .qna tr:first-child td {
+  border: solid 1px #353535;
+}
+
+.board input[type=submit] {
+  display: block;
+  font-size: 20px;
+  padding: 10px 72px;
+  margin: 40px auto;
+  border: solid 1px #bdbdbd;
+  background: #fafafa;
+  color: #4d4d4d;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-left: 500px;
+}
